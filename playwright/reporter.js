@@ -94,8 +94,8 @@ class PlaywrightBuildkiteAnalyticsReporter {
    */
   analyticsFailureMessages(testResult) {
     if (testResult.error == undefined) return [];
-    console.log("---testResult: ", JSON.stringify(testResult))
-    console.log("---testResult.error: ", JSON.stringify(testResult.error))
+    console.log("---testResult: ", testResult)
+    console.log("---testResult.error: ", testResult.error)
 
     console.log("---testResult.error.stack: ", testResult.error.stack)
     console.log("---testResult.error.snippet: ", testResult.error.snippet)
