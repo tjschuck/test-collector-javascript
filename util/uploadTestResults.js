@@ -5,8 +5,6 @@ const CHUNK_SIZE = 5000
 const DEFAULT_BUILDKITE_ANALYTICS_BASE_URL = 'https://analytics-api.buildkite.com/v1/uploads'
 
 const uploadTestResults = (env, results, options, done) => {
-  console.log("------------- process.env.BUILDKITE_ANALYTICS_TOKEN: ", process.env.BUILDKITE_ANALYTICS_TOKEN)
-  console.log("------------- options: ", options)
   const buildkiteAnalyticsToken = options?.token || process.env.BUILDKITE_ANALYTICS_TOKEN
   let data
 
@@ -58,6 +56,8 @@ const uploadTestResults = (env, results, options, done) => {
         return Promise.reject(error);
       });
     }
+
+    console.log("------------- data: ", JSON.stringify(data))
 
     const buildkiteAnalyticsUrl = process.env.BUILDKITE_ANALYTICS_BASE_URL || DEFAULT_BUILDKITE_ANALYTICS_BASE_URL
     axios.post(buildkiteAnalyticsUrl, data, config)
