@@ -94,16 +94,12 @@ class PlaywrightBuildkiteAnalyticsReporter {
    */
   analyticsFailureMessages(testResult) {
     if (testResult.error == undefined) return [];
-    console.log("---testResult: ", testResult)
-    console.log("---testResult.error: ", testResult.error)
 
-    console.log("---testResult.error.stack: ", testResult.error.stack)
-    console.log("---testResult.error.snippet: ", testResult.error.snippet)
+    const message = stripAnsi(testResult.error.message)?.split("\n") || [];
+    const stack = stripAnsi(testResult.error.stack)?.split("\n") || [];
+    const snippet = stripAnsi(testResult.error.snippet)?.split("\n") || [];
 
-    const stack = stripAnsi(testResult.error.stack).split("\n");
-    const snippet = stripAnsi(testResult.error.snippet).split("\n");
-
-    return stack.concat(snippet);
+    return [...message, ...stack, ...snippet];
   }
 
   /**
