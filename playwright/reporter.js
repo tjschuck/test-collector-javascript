@@ -93,14 +93,11 @@ class PlaywrightBuildkiteAnalyticsReporter {
    * @param {TestResult} testResult
    */
   analyticsFailureMessages(testResult) {
-    console.log("---enter analyticsFailureMessages")
     if (testResult.error == undefined) return [];
-    console.log("---error is defined in analyticsFailureMessages")
+    console.log("---testResult.error: ", testResult.error)
 
     console.log("---testResult.error.stack: ", testResult.error.stack)
     console.log("---testResult.error.snippet: ", testResult.error.snippet)
-    console.log("---stripAnsi(testResult.error.stack): ", stripAnsi(testResult.error.stack))
-    console.log("---stripAnsi(testResult.error.snippet): ", stripAnsi(testResult.error.snippet))
 
     const stack = stripAnsi(testResult.error.stack).split("\n");
     const snippet = stripAnsi(testResult.error.snippet).split("\n");
