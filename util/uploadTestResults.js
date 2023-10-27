@@ -64,9 +64,15 @@ const uploadTestResults = (env, results, options, done) => {
     const buildkiteAnalyticsUrl = process.env.BUILDKITE_ANALYTICS_BASE_URL || DEFAULT_BUILDKITE_ANALYTICS_BASE_URL
     axios.post(buildkiteAnalyticsUrl, data, config)
     .then(function (response) {
+      console.log("------------- response:")
+      console.log(JSON.stringify(response))
+      console.log("------------- :end response")
       if(done !== undefined) { return done() }
     })
     .catch(function (error) {
+      console.log("------------- error:")
+      console.log(JSON.stringify(error))
+      console.log("------------- :end error")
       if(done !== undefined) { return done() }
     })
   }
